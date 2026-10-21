@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First Personal Website</title>
+  <title>Helena's Personal Website</title>
   <style>
-    /* Global Styles */
+    /* Default Light Theme Variables */
     :root {
       --primary-color: #174a8b;
       --secondary-color: #2563eb;
       --bg-color: #eaf2ff;
       --card-bg: #ffffff;
       --text-color: #333333;
+      --subtext-color: #555555;
       --accent-color: #f3f7fe;
+      --border-color: #dbeafe;
     }
 
     * {
@@ -28,6 +30,7 @@
       text-align: center;
       padding: 40px 20px;
       line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     header {
@@ -38,10 +41,11 @@
       color: var(--primary-color);
       font-size: 2.2rem;
       margin-bottom: 8px;
+      transition: color 0.4s ease;
     }
 
     .subtitle {
-      color: #555;
+      color: var(--subtext-color);
       font-size: 1.1rem;
     }
 
@@ -52,41 +56,44 @@
       border-radius: 16px;
       margin: 0 auto 25px auto;
       max-width: 550px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
 
-    .avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: var(--primary-color);
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 15px auto;
+    /* Profile Photo Styling */
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover; /* Prevents the image from stretching */
+      border: 4px solid var(--primary-color);
+      margin-bottom: 15px;
+      transition: border-color 0.4s ease, transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
     }
 
     h2 {
       color: var(--primary-color);
       font-size: 1.4rem;
-      margin-top: 15px;
+      margin-top: 20px;
       margin-bottom: 10px;
-      border-bottom: 2px solid var(--accent-color);
+      border-bottom: 2px solid var(--border-color);
       padding-bottom: 5px;
+      transition: color 0.4s ease, border-color 0.4s ease;
     }
 
     p {
       margin-bottom: 12px;
-      color: #444;
+      color: var(--text-color);
     }
 
     /* Interactive Buttons Area */
@@ -95,7 +102,7 @@
       gap: 10px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     .btn {
@@ -131,21 +138,56 @@
       color: white;
     }
 
+    /* Theme Switcher Quick Selector */
+    .theme-selector {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .theme-label {
+      font-size: 0.85rem;
+      color: var(--subtext-color);
+      font-weight: 600;
+    }
+
+    .theme-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 0 4px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .theme-dot:hover {
+      transform: scale(1.2);
+    }
+
+    .dot-light { background-color: #eaf2ff; }
+    .dot-dark { background-color: #111827; }
+    .dot-purple { background-color: #2e1065; }
+
     /* Dynamic Interactive Section */
     #message-box {
-      margin-top: 15px;
-      padding: 12px;
+      margin-top: 18px;
+      padding: 14px;
       background-color: var(--accent-color);
       border-radius: 8px;
       display: none;
       color: var(--primary-color);
       font-weight: 600;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     /* Footer */
     footer {
       font-size: 0.9rem;
-      color: #666;
+      color: var(--subtext-color);
       margin-top: 20px;
     }
   </style>
@@ -153,63 +195,104 @@
 <body>
 
   <header>
-    <h1>Welcome to Helena's Portfolio</h1>
-    <p class="subtitle">SHS Grade 12 Student | HUMSS </p>
+    <h1>Welcome to My Portfolio!</h1>
+    <p class="subtitle">SHS Grade 12 Student | HUMSS</p>
   </header>
 
   <div class="card">
-    <div class="avatar">JS</div>
+    <!-- Profile Photo Section -->
+    <!-- REPLACE 'profile.jpg' with your actual image file name on GitHub -->
+    <img src="profile.jpg" alt="Profile Picture" class="profile-img">
 
-    <h2>About Me</h2>
-    <p>Hello! I am Helena Gonzales, a Senior High School student focused on developing web design and digital skills.</p>
+    <h2>About Me ✨</h2>
+    <p>Hello! I am a Grade 12 Senior High School student here at Datamex College of Saint Adeline-Parañaque.</p>
     <p>I am learning how to build and publish interactive websites using HTML, CSS, JavaScript, and GitHub Pages.</p>
 
-    <h2>My Interests</h2>
-    <p>The Arts, Literature, Traveling, and Continuous Learning.</p>
+    <h2>My Interests 💫</h2>
+    <p>The Visual arts, Life and Perspectives, Psychology, and Continuous Learning.</p>
 
     <!-- Interactive Buttons -->
     <div class="button-group">
-      <button class="btn" onclick="showMessage('contact')">Get in Touch</button>
+      <button class="btn" onclick="showMessage('contact')">Get in Touch!</button>
       <button class="btn btn-outline" onclick="showMessage('skills')">View My Skills</button>
-      <button class="btn btn-outline" onclick="toggleTheme()">Change Theme</button>
+      <button class="btn btn-outline" onclick="cycleTheme()">Switch Color Theme</button>
     </div>
 
-    <!-- Hidden Message Box (Displays when buttons are clicked) -->
+    <!-- Color Dot Selectors -->
+    <div class="theme-selector">
+      <span class="theme-label">Theme:</span>
+      <div class="theme-dot dot-light" title="Light Theme" onclick="setTheme('light')"></div>
+      <div class="theme-dot dot-dark" title="Dark Blue Theme" onclick="setTheme('dark')"></div>
+      <div class="theme-dot dot-purple" title="Dark Purple Theme" onclick="setTheme('purple')"></div>
+    </div>
+
+    <!-- Message Box -->
     <div id="message-box"></div>
   </div>
 
   <footer>
-    <p>Created for Empowerment Technologies Subject</p>
+    <p>Created for Empowerment Technologies Subject Purposes</p>
   </footer>
 
-  <!-- JavaScript for Button Interactions -->
   <script>
+    // Color Palette Definitions
+    const themes = {
+      light: {
+        '--bg-color': '#eaf2ff',
+        '--card-bg': '#ffffff',
+        '--text-color': '#333333',
+        '--subtext-color': '#555555',
+        '--primary-color': '#174a8b',
+        '--secondary-color': '#2563eb',
+        '--accent-color': '#f3f7fe',
+        '--border-color': '#dbeafe'
+      },
+      dark: {
+        '--bg-color': '#111827',
+        '--card-bg': '#1f2937',
+        '--text-color': '#f3f4f6',
+        '--subtext-color': '#9ca3af',
+        '--primary-color': '#60a5fa',
+        '--secondary-color': '#3b82f6',
+        '--accent-color': '#374151',
+        '--border-color': '#4b5563'
+      },
+      purple: {
+        '--bg-color': '#13091f',      /* Dark Purple Background */
+        '--card-bg': '#22123b',        /* Royal Dark Purple Card */
+        '--text-color': '#f3e8ff',      /* Light Soft Lavender Text */
+        '--subtext-color': '#c084fc',   /* Bright Violet Subtext */
+        '--primary-color': '#d8b4fe',   /* Soft Bright Purple Accent */
+        '--secondary-color': '#a855f7', /* Bold Purple */
+        '--accent-color': '#3b1d63',    /* Muted Violet for Inner Box */
+        '--border-color': '#581c87'     /* Dark Purple Border */
+      }
+    };
+
+    let currentThemeIndex = 0;
+    const themeKeys = ['light', 'dark', 'purple'];
+
+    function setTheme(themeName) {
+      const selectedTheme = themes[themeName];
+      for (let variable in selectedTheme) {
+        document.documentElement.style.setProperty(variable, selectedTheme[variable]);
+      }
+      currentThemeIndex = themeKeys.indexOf(themeName);
+    }
+
+    function cycleTheme() {
+      currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
+      setTheme(themeKeys[currentThemeIndex]);
+    }
+
     function showMessage(type) {
       const box = document.getElementById('message-box');
       box.style.display = 'block';
 
       if (type === 'contact') {
-        box.innerHTML = '📧 Email me at: hellinuhgonzales@gmail.com';
+        box.innerHTML = '📧 Email me: hellinuhgonzales@gmail.com';
       } else if (type === 'skills') {
-        box.innerHTML = '⚡ Skills: HTML5, Web Publishing, Industrial, Contemporary, Modern , Digital Arts, etc.';
-      }
-    }
-
-    function toggleTheme() {
-      const currentBg = getComputedStyle(document.documentElement).getPropertyValue('--bg-color').trim();
-      
-      if (currentBg === '#eaf2ff') {
-        document.documentElement.style.setProperty('--bg-color', '#1a202c');
-        document.documentElement.style.setProperty('--card-bg', '#2d3748');
-        document.documentElement.style.setProperty('--text-color', '#e2e8f0');
-        document.documentElement.style.setProperty('--primary-color', '#63b3ed');
-        document.documentElement.style.setProperty('--accent-color', '#4a5568');
-      } else {
-        document.documentElement.style.setProperty('--bg-color', '#eaf2ff');
-        document.documentElement.style.setProperty('--card-bg', '#ffffff');
-        document.documentElement.style.setProperty('--text-color', '#333333');
-        document.documentElement.style.setProperty('--primary-color', '#174a8b');
-        document.documentElement.style.setProperty('--accent-color', '#f3f7fe');
+        box.innerHTML = '⚡ Skills: HTML5, CSS3, JavaScript Basics, Web Publishing';
       }
     }
   </script>
