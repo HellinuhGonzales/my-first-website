@@ -1,43 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helena's Mobile Website</title>
-    <style>
-        body {
-            background-color: #f4f6f9;
-            color: #333333;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            margin: 0;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-        h2 {
-            color: #34495e;
-            border-bottom: 2px solid #bdc3c7;
-            padding-bottom: 5px;
-        }
-        p {
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Personal Website</title>
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-color: #174a8b;
+      --secondary-color: #2563eb;
+      --bg-color: #eaf2ff;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --accent-color: #f3f7fe;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    /* Main Card Layout */
+    .card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 16px;
+      margin: 0 auto 25px auto;
+      max-width: 550px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px auto;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #444;
+    }
+
+    /* Interactive Buttons Area */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* Dynamic Interactive Section */
+    #message-box {
+      margin-top: 15px;
+      padding: 12px;
+      background-color: var(--accent-color);
+      border-radius: 8px;
+      display: none;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My Mobile Website!</h1>
-    
+
+  <header>
+    <h1>Welcome to Helena's Portfolio</h1>
+    <p class="subtitle">SHS Grade 12 Student | HUMSS </p>
+  </header>
+
+  <div class="card">
+    <div class="avatar">JS</div>
+
     <h2>About Me</h2>
-    <p>Hello! I am a Grade 12 HUMSS student passionate about understanding society, literature, and human behavior. Empower Technologies has given me the amazing opportunity to build and publish my very first mobile website directly from my smartphone[span_5](start_span)[span_5](end_span). Through this platform, I aim to share a bit of my academic journey and my personal interests with everyone.</p>
-<p>I love obtainings skills like sculpting, painting through various mediums, writing, singing, and developing new connections with my peers.</p>
- 
-    <h2>My Favorite Subject and Hobbies</h2>
-    <p>My favorite subjects are Creative Writing Filipino and Filipino Identity Through the Arts.During my free time, I enjoy reading historical non-fiction books, writing poetry, and journaling about what comes to my head. Building this webpage using GitHub Pages has been a rewarding challenge that proves technology is accessible anywhere[span_6](start_span)[span_6](end_span).</p>
+    <p>Hello! I am Helena Gonzales, a Senior High School student focused on developing web design and digital skills.</p>
+    <p>I am learning how to build and publish interactive websites using HTML, CSS, JavaScript, and GitHub Pages.</p>
+
+    <h2>My Interests</h2>
+    <p>The Arts, Literature, Traveling, and Continuous Learning.</p>
+
+    <!-- Interactive Buttons -->
+    <div class="button-group">
+      <button class="btn" onclick="showMessage('contact')">Get in Touch</button>
+      <button class="btn btn-outline" onclick="showMessage('skills')">View My Skills</button>
+      <button class="btn btn-outline" onclick="toggleTheme()">Change Theme</button>
+    </div>
+
+    <!-- Hidden Message Box (Displays when buttons are clicked) -->
+    <div id="message-box"></div>
+  </div>
+
+  <footer>
+    <p>Created for Empowerment Technologies Subject</p>
+  </footer>
+
+  <!-- JavaScript for Button Interactions -->
+  <script>
+    function showMessage(type) {
+      const box = document.getElementById('message-box');
+      box.style.display = 'block';
+
+      if (type === 'contact') {
+        box.innerHTML = '📧 Email me at: hellinuhgonzales@gmail.com';
+      } else if (type === 'skills') {
+        box.innerHTML = '⚡ Skills: HTML5, Web Publishing, Industrial, Contemporary, Modern , Digital Arts, etc.';
+      }
+    }
+
+    function toggleTheme() {
+      const currentBg = getComputedStyle(document.documentElement).getPropertyValue('--bg-color').trim();
+      
+      if (currentBg === '#eaf2ff') {
+        document.documentElement.style.setProperty('--bg-color', '#1a202c');
+        document.documentElement.style.setProperty('--card-bg', '#2d3748');
+        document.documentElement.style.setProperty('--text-color', '#e2e8f0');
+        document.documentElement.style.setProperty('--primary-color', '#63b3ed');
+        document.documentElement.style.setProperty('--accent-color', '#4a5568');
+      } else {
+        document.documentElement.style.setProperty('--bg-color', '#eaf2ff');
+        document.documentElement.style.setProperty('--card-bg', '#ffffff');
+        document.documentElement.style.setProperty('--text-color', '#333333');
+        document.documentElement.style.setProperty('--primary-color', '#174a8b');
+        document.documentElement.style.setProperty('--accent-color', '#f3f7fe');
+      }
+    }
+  </script>
+
 </body>
 </html>
-
