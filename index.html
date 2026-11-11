@@ -17,7 +17,7 @@
       --border-color: #dbeafe;
     }
 
-    * {
+     {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -202,9 +202,9 @@
   <div class="card">
     <img src="IMG_20261112_001728.jpg" alt="Profile Picture" class="profile-img">
 
-    <h2>About Me ✨</h2>
-    <p>Hello! I am a Grade 12 Senior High School student here at Datamex College of Saint Adeline-Parañaque.</p>
-    <p>I am learning how to build and publish interactive websites using HTML, CSS, JavaScript, and GitHub Pages.</p>
+    <h2>Greetings!✨</h2>
+    <p>Hello! I am a Grade 12 SHS student here at Datamex College of Saint Adeline-Parañaque.</p>
+    
 
     <h2>My Short Educational Overview ✨💫</h2>
     <p>I am a former Special Program of the Arts student majoring in Visual Arts.</p>
@@ -215,11 +215,12 @@
     <!-- Interactive Buttons -->
     <div class="button-group">
       <button class="btn" onclick="showMessage('contact')">Get in Touch!</button>
-      <button class="btn btn-outline" onclick="showMessage('skills')">View My Skills</button>
+      <button class="btn btn-outline" onclick="showMessage('Talents')">View My skills</button>
       <button class="btn btn-outline" onclick="cycleTheme()">Switch Color Theme</button>
     </div>
 
-    <!-- Color Dot Selectors -->
+    <!-- Color Dot Selectors 
+    -->
     <div class="theme-selector">
       <span class="theme-label">Theme:</span>
       <div class="theme-dot dot-light" title="Light Theme" onclick="setTheme('light')"></div>
@@ -227,6 +228,7 @@
       <div class="theme-dot dot-purple" title="Dark Purple Theme" onclick="setTheme('purple')"></div>
     </div>
 
+    
     <!-- Message Box -->
     <div id="message-box"></div>
   </div>
@@ -273,13 +275,9 @@
     let currentThemeIndex = 0;
     const themeKeys = ['light', 'dark', 'purple'];
 
-    function setTheme(themeName) {
-      const selectedTheme = themes[themeName];
-      for (let variable in selectedTheme) {
-        document.documentElement.style.setProperty(variable, selectedTheme[variable]);
-      }
-      currentThemeIndex = themeKeys.indexOf(themeName);
-    }
+    function setTheme(themeName) { const selectedTheme = themes[themeName];
+      for (let variable in selectedTheme) { document.documentElement.style.setProperty(variable, selectedTheme[variable]);
+      }currentThemeIndex = themeKeys.indexOf(themeName) }
 
     function cycleTheme() {
       currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
@@ -290,10 +288,8 @@
       const box = document.getElementById('message-box');
       box.style.display = 'block';
 
-      if (type === 'contact') {
-        box.innerHTML = '📧 Email: hellinuhgonzales@gmail.com <br> 📸 IG: @mhariah_hellinuh <br> 📘 FB: @Helena Gonzales <br> 🎵 TikTok: @eldevice ;}';
-      } else if (type === 'skills' || type === 'Talents') {
-        box.innerHTML = '⚡ Skills & Talents: Singing, clay sculpting, props making, oil & water painting, songwriting, and creative writing (poems, songs, essays).';
+      if (type === 'contact') {box.innerHTML = '📧 Email: hellinuhgonzales@gmail.com <br> 📸 IG: @mhariah_hellinuh <br> 📘 FB: @Helena Gonzales <br> 🎵 TikTok: @eldevice ;}';
+    } else if (type === 'Talents' || type === 'Talents') { box.innerHTML = '⚡Talents: Singing, clay sculpting, props making, oil & water painting, songwriting, and creative writing (poems, songs, essays).';
       }
     }
   </script>
