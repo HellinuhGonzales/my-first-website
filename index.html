@@ -3,6 +3,615 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helena's Personal Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Default Light Theme Variables */
+    :root {
+      --primary-color: #174a8b;
+      --secondary-color: #2563eb;
+      --bg-color: #eaf2ff;
+      --card-bg: #ffffff;
+      --text-color: #1e293b;
+      --subtext-color: #475569;
+      --accent-color: #f1f5f9;
+      --border-color: #cbd5e1;
+      --glow-color: rgba(37, 99, 235, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 40px 20px;
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    header {
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 50px;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      border: 1px solid var(--border-color);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      transition: color 0.4s ease;
+    }
+
+    .subtitle {
+      color: var(--subtext-color);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    /* Main Card Layout */
+    .card {
+      background: var(--card-bg);
+      padding: 36px 28px;
+      border-radius: 20px;
+      margin: 0 auto 25px auto;
+      max-width: 780px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 15px 35px var(--glow-color);
+      transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Profile Photo Styling */
+    .profile-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .profile-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary-color);
+      transition: border-color 0.4s ease, transform 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .profile-img:hover {
+      transform: scale(1.06) rotate(2deg);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 28px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+      transition: color 0.4s ease, border-color 0.4s ease;
+    }
+
+    .intro-text {
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 10px auto;
+    }
+
+    /* Filter Tabs for Skills / Talents / Hobbies / Fun Facts */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 20px 0;
+    }
+
+    .tab-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      background: var(--accent-color);
+      color: var(--subtext-color);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
+    }
+
+    /* Photo + Word Experience Grid */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    .highlight-item {
+      background: var(--accent-color);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .highlight-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-color);
+    }
+
+    .highlight-photo {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      background-color: rgba(0, 0, 0, 0.12);
+      cursor: zoom-in;
+      border-bottom: 1px solid var(--border-color);
+      transition: opacity 0.25s ease;
+    }
+
+    .highlight-photo:hover {
+      opacity: 0.88;
+    }
+
+    .highlight-content {
+      padding: 13px;
+      flex-grow: 1;
+    }
+
+    .highlight-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .highlight-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+      color: var(--text-color);
+    }
+
+    .highlight-content p {
+      font-size: 0.86rem;
+      margin: 0;
+      color: var(--subtext-color);
+      line-height: 1.45;
+    }
+
+    /* Interactive Buttons Area */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border: 2px solid var(--primary-color);
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+
+    /* Theme Switcher Quick Selector */
+    .theme-selector {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .theme-label {
+      font-size: 0.82rem;
+      color: var(--subtext-color);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .theme-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease;
+    }
+
+    .theme-dot:hover {
+      transform: scale(1.25);
+    }
+
+    .dot-light { background-color: #eaf2ff; }
+    .dot-dark { background-color: #111827; }
+    .dot-purple { background-color: #3b0764; }
+    .dot-crimson { background-color: #ff1e42; }
+
+    /* Dynamic Interactive Section */
+    #message-box {
+      margin-top: 20px;
+      padding: 16px;
+      background-color: var(--accent-color);
+      border-radius: 12px;
+      display: none;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      border: 1px solid var(--primary-color);
+      line-height: 1.8;
+      animation: fadeIn 0.25s ease;
+    }
+
+    #message-box a {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--primary-color);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Fullscreen Image Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 12px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Footer */
+    footer {
+      font-size: 0.88rem;
+      color: var(--subtext-color);
+      margin-top: 15px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">✦ Grade 12 • HUMSS Strand ✦</div>
+    <h1>Welcome to Helena's Portfolio!</h1>
+    <p class="subtitle">Visual Artist • Campus Journalist • Performer &amp; Host</p>
+  </header>
+
+  <div class="card">
+    <div class="profile-wrapper">
+      <img src="IMG_20261112_001728.jpg" alt="Helena's Profile Picture" class="profile-img">
+    </div>
+
+    <h2>Greetings! ✨</h2>
+    <p class="intro-text">
+      Hello! I am a Grade 12 Senior High School student at <strong>Datamex College of Saint Adeline - Parañaque</strong>.
+    </p>
+
+    <h2>Skills, Talents, Hobbies &amp; Fun Facts ✨💫</h2>
+    <p style="font-size: 0.82rem; color: var(--subtext-color);">
+      Filter by category or click any photo to enlarge
+    </p>
+
+    <!-- Interactive Category Filters -->
+    <div class="filter-tabs">
+      <button class="tab-btn active" onclick="filterCards('all', this)">All (9)</button>
+      <button class="tab-btn" onclick="filterCards('skill', this)">Skills</button>
+      <button class="tab-btn" onclick="filterCards('talent', this)">Talents</button>
+      <button class="tab-btn" onclick="filterCards('hobby', this)">Hobbies</button>
+      <button class="tab-btn" onclick="filterCards('funfact', this)">Fun Facts</button>
+    </div>
+
+    <!-- 9 PHOTO + WORD CARDS -->
+    <div class="highlights-grid">
+
+      <!-- 1. SKILL: Visual Arts -->
+      <div class="highlight-item" data-category="skill">
+        <img src="photo1-visual-arts.jpg" alt="Oil and Watercolor Painting" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Skill // 01</span>
+          <div class="highlight-title">Oil &amp; Water Painting</div>
+          <p>Former Special Program in the Arts (SPA) student majoring in Visual Arts.</p>
+        </div>
+      </div>
+
+      <!-- 2. SKILL: Campus Journalism -->
+      <div class="highlight-item" data-category="skill">
+        <img src="photo2-journalism.jpg" alt="Editorial Cartooning and Photojournalism" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Skill // 02</span>
+          <div class="highlight-title">Campus Journalism</div>
+          <p>Experienced in editorial cartooning, photojournalism, and sports writing.</p>
+        </div>
+      </div>
+
+      <!-- 3. TALENT: Stage Presenting & Hosting -->
+      <div class="highlight-item" data-category="talent">
+        <img src="photo3-hosting.jpg" alt="Stage Presenting and Hosting" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Talent // 03</span>
+          <div class="highlight-title">Stage Hosting &amp; Speaking</div>
+          <p>Loves presenting on stage—once managed and hosted a major campus event.</p>
+        </div>
+      </div>
+
+      <!-- 4. TALENT: Singing & Songwriting -->
+      <div class="highlight-item" data-category="talent">
+        <img src="photo4-singing.jpg" alt="Singing and Songwriting" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Talent // 04</span>
+          <div class="highlight-title">Singing &amp; Songwriting</div>
+          <p>Expressing stories and emotions through vocals and original lyrics.</p>
+        </div>
+      </div>
+
+      <!-- 5. HOBBY: Clay Sculpting -->
+      <div class="highlight-item" data-category="hobby">
+        <img src="photo5-clay.jpg" alt="Clay Sculpting" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Hobby // 05</span>
+          <div class="highlight-title">Clay Sculpting</div>
+          <p>Shaping miniature figures, charms, and custom 3D pieces by hand.</p>
+        </div>
+      </div>
+
+      <!-- 6. HOBBY: Props Making -->
+      <div class="highlight-item" data-category="hobby">
+        <img src="photo6-props.jpg" alt="Props Making" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Hobby // 06</span>
+          <div class="highlight-title">Props &amp; Craft Making</div>
+          <p>Building creative stage props and handmade designs from scratch.</p>
+        </div>
+      </div>
+
+      <!-- 7. HOBBY: Creative Writing -->
+      <div class="highlight-item" data-category="hobby">
+        <img src="photo7-writing.jpg" alt="Creative Writing" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Hobby // 07</span>
+          <div class="highlight-title">Poems &amp; Essays</div>
+          <p>Writing heartfelt poetry, reflective essays, and HUMSS-inspired pieces.</p>
+        </div>
+      </div>
+
+      <!-- 8. FUN FACT 1 -->
+      <div class="highlight-item" data-category="funfact">
+        <img src="photo8-funfact1.jpg" alt="Fun Fact 1" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Fun Fact // 08</span>
+          <div class="highlight-title">Multi-Artistic Brain</div>
+          <p>I switch easily between quiet painting sessions and hyping up a whole crowd on stage!</p>
+        </div>
+      </div>
+
+      <!-- 9. FUN FACT 2 -->
+      <div class="highlight-item" data-category="funfact">
+        <img src="photo9-funfact2.jpg" alt="Fun Fact 2" class="highlight-photo" onclick="openLightbox(this.src)">
+        <div class="highlight-content">
+          <span class="highlight-tag">Fun Fact // 09</span>
+          <div class="highlight-title">Always Creating</div>
+          <p>My desk almost always has paintbrushes, clay tools, and half-written song lyrics on it.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Interactive Buttons -->
+    <div class="button-group">
+      <button class="btn" onclick="toggleMessage('contact')">Get in Touch!</button>
+      <button class="btn btn-outline" onclick="cycleTheme()">Switch Color Theme</button>
+    </div>
+
+    <!-- Color Dot Selectors -->
+    <div class="theme-selector">
+      <span class="theme-label">Theme:</span>
+      <div class="theme-dot dot-light" title="Light Theme" onclick="setTheme('light')"></div>
+      <div class="theme-dot dot-dark" title="Dark Blue Theme" onclick="setTheme('dark')"></div>
+      <div class="theme-dot dot-purple" title="Dark Purple Theme" onclick="setTheme('purple')"></div>
+      <div class="theme-dot dot-crimson" title="Alt Crimson Theme" onclick="setTheme('crimson')"></div>
+    </div>
+
+    <!-- Contact Box -->
+    <div id="message-box"></div>
+  </div>
+
+  <footer>
+    <p>"Jeo Ong once said: Dama, dama mo ba yung pinapadama ko sayo Gehlee..?"</p>
+  </footer>
+
+  <!-- Fullscreen Image Preview Modal -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Expanded Preview">
+  </div>
+
+  <script>
+    const themes = {
+      light: {
+        '--bg-color': '#eaf2ff',
+        '--card-bg': '#ffffff',
+        '--text-color': '#1e293b',
+        '--subtext-color': '#475569',
+        '--primary-color': '#174a8b',
+        '--secondary-color': '#2563eb',
+        '--accent-color': '#f1f5f9',
+        '--border-color': '#cbd5e1',
+        '--glow-color': 'rgba(37, 99, 235, 0.15)'
+      },
+      dark: {
+        '--bg-color': '#0f172a',
+        '--card-bg': '#1e293b',
+        '--text-color': '#f8fafc',
+        '--subtext-color': '#94a3b8',
+        '--primary-color': '#60a5fa',
+        '--secondary-color': '#3b82f6',
+        '--accent-color': '#0f172a',
+        '--border-color': '#334155',
+        '--glow-color': 'rgba(0, 0, 0, 0.4)'
+      },
+      purple: {
+        '--bg-color': '#13091f',
+        '--card-bg': '#22123b',
+        '--text-color': '#f3e8ff',
+        '--subtext-color': '#c084fc',
+        '--primary-color': '#d8b4fe',
+        '--secondary-color': '#a855f7',
+        '--accent-color': '#311654',
+        '--border-color': '#581c87',
+        '--glow-color': 'rgba(168, 85, 247, 0.25)'
+      },
+      crimson: {
+        '--bg-color': '#09090b',
+        '--card-bg': '#141418',
+        '--text-color': '#f4f4f5',
+        '--subtext-color': '#a1a1aa',
+        '--primary-color': '#ff1e42',
+        '--secondary-color': '#e11d48',
+        '--accent-color': '#1f1f26',
+        '--border-color': '#2e2e38',
+        '--glow-color': 'rgba(255, 30, 66, 0.22)'
+      }
+    };
+
+    let currentThemeIndex = 0;
+    const themeKeys = ['light', 'dark', 'purple', 'crimson'];
+
+    function setTheme(themeName) {
+      const selectedTheme = themes[themeName];
+      for (let variable in selectedTheme) {
+        document.documentElement.style.setProperty(variable, selectedTheme[variable]);
+      }
+      currentThemeIndex = themeKeys.indexOf(themeName);
+    }
+
+    function cycleTheme() {
+      currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
+      setTheme(themeKeys[currentThemeIndex]);
+    }
+
+    function filterCards(category, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.highlight-item').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleMessage(type) {
+      const box = document.getElementById('message-box');
+      if (box.style.display === 'block') {
+        box.style.display = 'none';
+        return;
+      }
+
+      box.style.display = 'block';
+      box.innerHTML = `
+        <strong>Let's Connect! 💌</strong><br>
+        📧 Email: <a href="mailto:hellinuhgonzales@gmail.com">hellinuhgonzales@gmail.com</a><br>
+        📸 IG: <strong>@mhariah_hellinuh</strong> • 📘 FB: <strong>@Helena Gonzales</strong> • 🎵 TikTok: <strong>@eldevice</strong>
+      `;
+    }
+
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
+
+</body>
+          </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Helena's Personal Website</title>
   <style>
     /* Default Light Theme Variables */
