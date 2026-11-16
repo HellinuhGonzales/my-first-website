@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Helena's Personal Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helena // Personal Archive</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet" />
+  <!-- Phosphor Icons (Clean Aesthetic Icons) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
-    /* Default Light Theme Variables */
     :root {
-      --primary-color: #174a8b;
-      --secondary-color: #2563eb;
-      --bg-color: #eaf2ff;
+      --bg-color: #09090d;
+      --card-bg: #13131a;
+      --accent-bg: #1c1c26;
+      --primary: #ff2a5f;
+      --secondary: #a855f7;
+      --text-main: #f4f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.1);
+      --glow: rgba(255, 42, 95, 0.25);
+    }
+
+    /* Alternate Themes */
+    [data-theme="soft-sky"] {
+      --bg-color: #eef4ff;
       --card-bg: #ffffff;
-      --text-color: #1e293b;
-      --subtext-color: #475569;
-      --accent-color: #f1f5f9;
-      --border-color: #cbd5e1;
-      --glow-color: rgba(37, 99, 235, 0.15);
+      --accent-bg: #f1f5f9;
+      --primary: #1d4ed8;
+      --secondary: #3b82f6;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --glow: rgba(29, 78, 216, 0.15);
+    }
+
+    [data-theme="cyber-plum"] {
+      --bg-color: #130722;
+      --card-bg: #1f0e38;
+      --accent-bg: #2d1650;
+      --primary: #d946ef;
+      --secondary: #8b5cf6;
+      --text-main: #faf5ff;
+      --text-muted: #c084fc;
+      --border: rgba(217, 70, 239, 0.25);
+      --glow: rgba(217, 70, 239, 0.25);
     }
 
     * {
@@ -25,883 +52,622 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-color);
-      color: var(--text-color);
-      text-align: center;
-      padding: 40px 20px;
+      color: var(--text-main);
       line-height: 1.6;
-      transition: background-color 0.4s ease, color 0.4s ease;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      background-image: radial-gradient(circle at 50% 0%, var(--glow), transparent 60%);
+      padding-bottom: 90px;
     }
 
-    header {
+    /* Top Status Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 50px;
+      color: var(--text-main);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--primary);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .theme-pills {
+      display: flex;
+      gap: 8px;
+    }
+
+    .theme-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .theme-btn:hover { transform: scale(1.2); }
+
+    /* Main Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero / About Me Card */
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
       margin-bottom: 28px;
     }
 
-    .badge {
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 5px 14px;
-      border-radius: 50px;
-      background-color: var(--accent-color);
-      color: var(--primary-color);
-      border: 1px solid var(--border-color);
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      color: var(--primary-color);
-      font-size: 2.3rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-      transition: color 0.4s ease;
-    }
-
-    .subtitle {
-      color: var(--subtext-color);
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    /* Main Card Layout */
-    .card {
-      background: var(--card-bg);
-      padding: 36px 28px;
-      border-radius: 20px;
-      margin: 0 auto 25px auto;
-      max-width: 780px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 15px 35px var(--glow-color);
-      transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    /* Profile Photo Styling */
-    .profile-wrapper {
+    .avatar-box {
       position: relative;
-      display: inline-block;
-      margin-bottom: 12px;
+      flex-shrink: 0;
+      margin: 0 auto;
     }
 
-    .profile-img {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
+    .avatar {
+      width: 145px;
+      height: 145px;
+      border-radius: 24px;
       object-fit: cover;
-      border: 4px solid var(--primary-color);
-      transition: border-color 0.4s ease, transform 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      border: 3px solid var(--primary);
+      box-shadow: 0 10px 25px var(--glow);
+      transition: transform 0.3s ease;
     }
 
-    .profile-img:hover {
-      transform: scale(1.06) rotate(2deg);
+    .avatar:hover {
+      transform: rotate(-2deg) scale(1.03);
     }
 
-    h2 {
-      color: var(--primary-color);
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-top: 28px;
-      margin-bottom: 14px;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 8px;
-      transition: color 0.4s ease, border-color 0.4s ease;
-    }
-
-    .intro-text {
-      font-size: 1.05rem;
-      max-width: 560px;
-      margin: 0 auto 10px auto;
-    }
-
-    /* Filter Tabs for Skills / Talents / Hobbies / Fun Facts */
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0 20px 0;
-    }
-
-    .tab-btn {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 50px;
-      border: 1px solid var(--border-color);
-      background: var(--accent-color);
-      color: var(--subtext-color);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--primary-color);
-      color: #ffffff;
-      border-color: var(--primary-color);
-    }
-
-    /* Photo + Word Experience Grid */
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+    .hero-info {
+      flex: 1;
+      min-width: 260px;
       text-align: left;
     }
 
-    .highlight-item {
-      background: var(--accent-color);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .hero-info h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-info p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 16px;
+    }
+
+    .quick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-tag {
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .q-tag i {
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    /* Interactive Icon Navigation Grid */
+    .icon-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .nav-tile {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .nav-tile i {
+      font-size: 1.5rem;
+      color: var(--primary);
+      transition: transform 0.25s ease;
+    }
+
+    .nav-tile:hover, .nav-tile.active {
+      border-color: var(--primary);
+      background: var(--accent-bg);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px var(--glow);
+    }
+
+    .nav-tile:hover i {
+      transform: scale(1.15);
+    }
+
+    /* Section Styling */
+    .section-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .section-title i {
+      color: var(--primary);
+      font-size: 1.5rem;
+      background: var(--accent-bg);
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .section-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Photo + Detail Cards Grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .item-card {
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
       overflow: hidden;
       transition: transform 0.25s ease, border-color 0.25s ease;
       display: flex;
       flex-direction: column;
     }
 
-    .highlight-item:hover {
+    .item-card:hover {
       transform: translateY(-4px);
-      border-color: var(--primary-color);
+      border-color: var(--primary);
     }
 
-    .highlight-photo {
+    .item-img {
       width: 100%;
-      height: 155px;
+      height: 170px;
       object-fit: cover;
-      background-color: rgba(0, 0, 0, 0.12);
+      background-color: rgba(128, 128, 128, 0.12);
       cursor: zoom-in;
-      border-bottom: 1px solid var(--border-color);
-      transition: opacity 0.25s ease;
+      border-bottom: 1px solid var(--border);
     }
 
-    .highlight-photo:hover {
-      opacity: 0.88;
+    .item-body {
+      padding: 16px;
     }
 
-    .highlight-content {
-      padding: 13px;
-      flex-grow: 1;
-    }
-
-    .highlight-tag {
+    .item-badge {
       font-family: 'Space Mono', monospace;
       font-size: 0.68rem;
       font-weight: 700;
-      color: var(--primary-color);
+      color: var(--primary);
       text-transform: uppercase;
-      display: block;
-      margin-bottom: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 6px;
     }
 
-    .highlight-title {
-      font-weight: 800;
-      font-size: 0.98rem;
-      margin-bottom: 4px;
-      color: var(--text-color);
-    }
-
-    .highlight-content p {
-      font-size: 0.86rem;
-      margin: 0;
-      color: var(--subtext-color);
-      line-height: 1.45;
-    }
-
-    /* Interactive Buttons Area */
-    .button-group {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .btn {
-      background-color: var(--primary-color);
-      color: #ffffff;
-      border: 2px solid var(--primary-color);
-      padding: 11px 22px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.92rem;
+    .item-body h3 {
+      font-size: 1.05rem;
       font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      margin-bottom: 5px;
     }
 
-    .btn:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-      transform: translateY(-2px);
+    .item-body p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
     }
 
-    .btn-outline {
-      background-color: transparent;
-      color: var(--primary-color);
-      border: 2px solid var(--primary-color);
+    /* Fun Facts & Random Interactive Widgets */
+    .bento-two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
 
-    .btn-outline:hover {
-      background-color: var(--primary-color);
-      color: #ffffff;
+    .fact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    /* Theme Switcher Quick Selector */
-    .theme-selector {
-      margin-top: 20px;
+    .fact-item {
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .fact-item i {
+      color: var(--primary);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* Interactive Randomizer Box */
+    .random-widget {
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .quote-display {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      min-height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-    }
-
-    .theme-label {
-      font-size: 0.82rem;
-      color: var(--subtext-color);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .theme-dot {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid #ffffff;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
-      transition: transform 0.2s ease;
-    }
-
-    .theme-dot:hover {
-      transform: scale(1.25);
-    }
-
-    .dot-light { background-color: #eaf2ff; }
-    .dot-dark { background-color: #111827; }
-    .dot-purple { background-color: #3b0764; }
-    .dot-crimson { background-color: #ff1e42; }
-
-    /* Dynamic Interactive Section */
-    #message-box {
-      margin-top: 20px;
-      padding: 16px;
-      background-color: var(--accent-color);
+      text-align: center;
+      padding: 10px;
+      background: var(--card-bg);
       border-radius: 12px;
-      display: none;
-      color: var(--text-color);
-      font-size: 0.95rem;
-      border: 1px solid var(--primary-color);
-      line-height: 1.8;
-      animation: fadeIn 0.25s ease;
+      border: 1px dashed var(--border);
     }
 
-    #message-box a {
-      color: var(--primary-color);
+    .action-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-family: inherit;
       font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .action-btn:active { transform: scale(0.97); }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .contact-pill {
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      border-radius: 14px;
       text-decoration: none;
-      border-bottom: 1px dashed var(--primary-color);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
+    .contact-pill i {
+      font-size: 1.4rem;
+      color: var(--primary);
     }
 
-    /* Fullscreen Image Lightbox Modal */
+    .contact-pill:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* Lightbox Modal */
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
       z-index: 1000;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       padding: 20px;
       cursor: zoom-out;
     }
 
     .lightbox img {
-      max-width: 90%;
-      max-height: 85vh;
-      border-radius: 12px;
-      border: 2px solid #ffffff;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      max-width: 92%;
+      max-height: 78vh;
+      border-radius: 14px;
+      border: 2px solid #fff;
     }
 
-    /* Footer */
+    .lightbox p {
+      color: #fff;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
     footer {
-      font-size: 0.88rem;
-      color: var(--subtext-color);
-      margin-top: 15px;
-      font-style: italic;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="badge">✦ Grade 12 • HUMSS Strand ✦</div>
-    <h1>Welcome to Helena's Portfolio!</h1>
-    <p class="subtitle">Visual Artist • Campus Journalist • Performer &amp; Host</p>
-  </header>
-
-  <div class="card">
-    <div class="profile-wrapper">
-      <img src="IMG_20261112_001728.jpg" alt="Helena's Profile Picture" class="profile-img">
-    </div>
-
-    <h2>Greetings! ✨</h2>
-    <p class="intro-text">
-      Hello! I am a Grade 12 Senior High School student at <strong>Datamex College of Saint Adeline - Parañaque</strong>.
-    </p>
-
-    <h2>Skills, Talents, Hobbies &amp; Fun Facts ✨💫</h2>
-    <p style="font-size: 0.82rem; color: var(--subtext-color);">
-      Filter by category or click any photo to enlarge
-    </p>
-
-    <!-- Interactive Category Filters -->
-    <div class="filter-tabs">
-      <button class="tab-btn active" onclick="filterCards('all', this)">All (9)</button>
-      <button class="tab-btn" onclick="filterCards('skill', this)">Skills</button>
-      <button class="tab-btn" onclick="filterCards('talent', this)">Talents</button>
-      <button class="tab-btn" onclick="filterCards('hobby', this)">Hobbies</button>
-      <button class="tab-btn" onclick="filterCards('funfact', this)">Fun Facts</button>
-    </div>
-
-    <!-- 9 PHOTO + WORD CARDS -->
-    <div class="highlights-grid">
-
-      <!-- 1. SKILL: Visual Arts -->
-      <div class="highlight-item" data-category="skill">
-        <img src="photo1-visual-arts.jpg" alt="Oil and Watercolor Painting" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Skill // 01</span>
-          <div class="highlight-title">Oil &amp; Water Painting</div>
-          <p>Former Special Program in the Arts (SPA) student majoring in Visual Arts.</p>
-        </div>
-      </div>
-
-      <!-- 2. SKILL: Campus Journalism -->
-      <div class="highlight-item" data-category="skill">
-        <img src="photo2-journalism.jpg" alt="Editorial Cartooning and Photojournalism" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Skill // 02</span>
-          <div class="highlight-title">Campus Journalism</div>
-          <p>Experienced in editorial cartooning, photojournalism, and sports writing.</p>
-        </div>
-      </div>
-
-      <!-- 3. TALENT: Stage Presenting & Hosting -->
-      <div class="highlight-item" data-category="talent">
-        <img src="photo3-hosting.jpg" alt="Stage Presenting and Hosting" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Talent // 03</span>
-          <div class="highlight-title">Stage Hosting &amp; Speaking</div>
-          <p>Loves presenting on stage—once managed and hosted a major campus event.</p>
-        </div>
-      </div>
-
-      <!-- 4. TALENT: Singing & Songwriting -->
-      <div class="highlight-item" data-category="talent">
-        <img src="photo4-singing.jpg" alt="Singing and Songwriting" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Talent // 04</span>
-          <div class="highlight-title">Singing &amp; Songwriting</div>
-          <p>Expressing stories and emotions through vocals and original lyrics.</p>
-        </div>
-      </div>
-
-      <!-- 5. HOBBY: Clay Sculpting -->
-      <div class="highlight-item" data-category="hobby">
-        <img src="photo5-clay.jpg" alt="Clay Sculpting" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Hobby // 05</span>
-          <div class="highlight-title">Clay Sculpting</div>
-          <p>Shaping miniature figures, charms, and custom 3D pieces by hand.</p>
-        </div>
-      </div>
-
-      <!-- 6. HOBBY: Props Making -->
-      <div class="highlight-item" data-category="hobby">
-        <img src="photo6-props.jpg" alt="Props Making" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Hobby // 06</span>
-          <div class="highlight-title">Props &amp; Craft Making</div>
-          <p>Building creative stage props and handmade designs from scratch.</p>
-        </div>
-      </div>
-
-      <!-- 7. HOBBY: Creative Writing -->
-      <div class="highlight-item" data-category="hobby">
-        <img src="photo7-writing.jpg" alt="Creative Writing" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Hobby // 07</span>
-          <div class="highlight-title">Poems &amp; Essays</div>
-          <p>Writing heartfelt poetry, reflective essays, and HUMSS-inspired pieces.</p>
-        </div>
-      </div>
-
-      <!-- 8. FUN FACT 1 -->
-      <div class="highlight-item" data-category="funfact">
-        <img src="photo8-funfact1.jpg" alt="Fun Fact 1" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Fun Fact // 08</span>
-          <div class="highlight-title">Multi-Artistic Brain</div>
-          <p>I switch easily between quiet painting sessions and hyping up a whole crowd on stage!</p>
-        </div>
-      </div>
-
-      <!-- 9. FUN FACT 2 -->
-      <div class="highlight-item" data-category="funfact">
-        <img src="photo9-funfact2.jpg" alt="Fun Fact 2" class="highlight-photo" onclick="openLightbox(this.src)">
-        <div class="highlight-content">
-          <span class="highlight-tag">Fun Fact // 09</span>
-          <div class="highlight-title">Always Creating</div>
-          <p>My desk almost always has paintbrushes, clay tools, and half-written song lyrics on it.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Interactive Buttons -->
-    <div class="button-group">
-      <button class="btn" onclick="toggleMessage('contact')">Get in Touch!</button>
-      <button class="btn btn-outline" onclick="cycleTheme()">Switch Color Theme</button>
-    </div>
-
-    <!-- Color Dot Selectors -->
-    <div class="theme-selector">
-      <span class="theme-label">Theme:</span>
-      <div class="theme-dot dot-light" title="Light Theme" onclick="setTheme('light')"></div>
-      <div class="theme-dot dot-dark" title="Dark Blue Theme" onclick="setTheme('dark')"></div>
-      <div class="theme-dot dot-purple" title="Dark Purple Theme" onclick="setTheme('purple')"></div>
-      <div class="theme-dot dot-crimson" title="Alt Crimson Theme" onclick="setTheme('crimson')"></div>
-    </div>
-
-    <!-- Contact Box -->
-    <div id="message-box"></div>
-  </div>
-
-  <footer>
-    <p>"Jeo Ong once said: Dama, dama mo ba yung pinapadama ko sayo Gehlee..?"</p>
-  </footer>
-
-  <!-- Fullscreen Image Preview Modal -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Expanded Preview">
-  </div>
-
-  <script>
-    const themes = {
-      light: {
-        '--bg-color': '#eaf2ff',
-        '--card-bg': '#ffffff',
-        '--text-color': '#1e293b',
-        '--subtext-color': '#475569',
-        '--primary-color': '#174a8b',
-        '--secondary-color': '#2563eb',
-        '--accent-color': '#f1f5f9',
-        '--border-color': '#cbd5e1',
-        '--glow-color': 'rgba(37, 99, 235, 0.15)'
-      },
-      dark: {
-        '--bg-color': '#0f172a',
-        '--card-bg': '#1e293b',
-        '--text-color': '#f8fafc',
-        '--subtext-color': '#94a3b8',
-        '--primary-color': '#60a5fa',
-        '--secondary-color': '#3b82f6',
-        '--accent-color': '#0f172a',
-        '--border-color': '#334155',
-        '--glow-color': 'rgba(0, 0, 0, 0.4)'
-      },
-      purple: {
-        '--bg-color': '#13091f',
-        '--card-bg': '#22123b',
-        '--text-color': '#f3e8ff',
-        '--subtext-color': '#c084fc',
-        '--primary-color': '#d8b4fe',
-        '--secondary-color': '#a855f7',
-        '--accent-color': '#311654',
-        '--border-color': '#581c87',
-        '--glow-color': 'rgba(168, 85, 247, 0.25)'
-      },
-      crimson: {
-        '--bg-color': '#09090b',
-        '--card-bg': '#141418',
-        '--text-color': '#f4f4f5',
-        '--subtext-color': '#a1a1aa',
-        '--primary-color': '#ff1e42',
-        '--secondary-color': '#e11d48',
-        '--accent-color': '#1f1f26',
-        '--border-color': '#2e2e38',
-        '--glow-color': 'rgba(255, 30, 66, 0.22)'
-      }
-    };
-
-    let currentThemeIndex = 0;
-    const themeKeys = ['light', 'dark', 'purple', 'crimson'];
-
-    function setTheme(themeName) {
-      const selectedTheme = themes[themeName];
-      for (let variable in selectedTheme) {
-        document.documentElement.style.setProperty(variable, selectedTheme[variable]);
-      }
-      currentThemeIndex = themeKeys.indexOf(themeName);
-    }
-
-    function cycleTheme() {
-      currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
-      setTheme(themeKeys[currentThemeIndex]);
-    }
-
-    function filterCards(category, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      document.querySelectorAll('.highlight-item').forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    function toggleMessage(type) {
-      const box = document.getElementById('message-box');
-      if (box.style.display === 'block') {
-        box.style.display = 'none';
-        return;
-      }
-
-      box.style.display = 'block';
-      box.innerHTML = `
-        <strong>Let's Connect! 💌</strong><br>
-        📧 Email: <a href="mailto:hellinuhgonzales@gmail.com">hellinuhgonzales@gmail.com</a><br>
-        📸 IG: <strong>@mhariah_hellinuh</strong> • 📘 FB: <strong>@Helena Gonzales</strong> • 🎵 TikTok: <strong>@eldevice</strong>
-      `;
-    }
-
-    function openLightbox(src) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
-  </script>
-
-</body>
-          </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Helena's Personal Website</title>
-  <style>
-    /* Default Light Theme Variables */
-    :root {
-      --primary-color: #174a8b;
-      --secondary-color: #2563eb;
-      --bg-color: #eaf2ff;
-      --card-bg: #ffffff;
-      --text-color: #333333;
-      --subtext-color: #555555;
-      --accent-color: #f3f7fe;
-      --border-color: #dbeafe;
-    }
-
-     {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
       text-align: center;
-      padding: 40px 20px;
-      line-height: 1.6;
-      transition: background-color 0.4s ease, color 0.4s ease;
-    }
-
-    header {
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      color: var(--primary-color);
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-      transition: color 0.4s ease;
-    }
-
-    .subtitle {
-      color: var(--subtext-color);
-      font-size: 1.1rem;
-    }
-
-    /* Main Card Layout */
-    .card {
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 16px;
-      margin: 0 auto 25px auto;
-      max-width: 550px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Profile Photo Styling */
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--primary-color);
-      margin-bottom: 15px;
-      transition: border-color 0.4s ease, transform 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05);
-    }
-
-    h2 {
-      color: var(--primary-color);
-      font-size: 1.4rem;
-      margin-top: 20px;
-      margin-bottom: 10px;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 5px;
-      transition: color 0.4s ease, border-color 0.4s ease;
-    }
-
-    p {
-      margin-bottom: 12px;
-      color: var(--text-color);
-    }
-
-    /* Interactive Buttons Area */
-    .button-group {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 25px;
-    }
-
-    .btn {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background-color: var(--secondary-color);
-    }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      color: var(--primary-color);
-      border: 2px solid var(--primary-color);
-    }
-
-    .btn-outline:hover {
-      background-color: var(--primary-color);
-      color: white;
-    }
-
-    /* Theme Switcher Quick Selector */
-    .theme-selector {
-      margin-top: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    
-    .theme-label {
+      color: var(--text-muted);
       font-size: 0.85rem;
-      color: var(--subtext-color);
-      font-weight: 600;
-    }
-
-    .theme-dot {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid white;
-      box-shadow: 0 0 4px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
-    }
-
-    .theme-dot:hover {
-      transform: scale(1.2);
-    }
-
-    .dot-light { background-color: #eaf2ff; }
-    .dot-dark { background-color: #111827; }
-    .dot-purple { background-color: #2e1065; }
-
-    /* Dynamic Interactive Section */
-    #message-box {
-      margin-top: 18px;
-      padding: 14px;
-      background-color: var(--accent-color);
-      border-radius: 8px;
-      display: none;
-      color: var(--primary-color);
-      font-weight: 600;
-      border: 1px solid var(--border-color);
-      transition: background-color 0.4s ease, color 0.4s ease;
-    }
-
-    /* Footer */
-    footer {
-      font-size: 0.9rem;
-      color: var(--subtext-color);
       margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-card { text-align: center; justify-content: center; }
+      .hero-info { text-align: center; }
+      .quick-tags { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Welcome to My Portfolio!</h1>
-    <p class="subtitle">SHS Grade 12 Student | HUMSS</p>
-  </header>
-
-  <div class="card">
-    <img src="IMG_20261112_001728.jpg" alt="Profile Picture" class="profile-img">
-
-    <h2>Greetings!✨</h2>
-    <p>Hello! I am a Grade 12 SHS student here at Datamex College of Saint Adeline-Parañaque.</p>
-    
-
-    <h2>My Short Educational Overview ✨💫</h2>
-    <p>I am a former Special Program of the Arts student majoring in Visual Arts.</p>
-    <p>I was a Campus Journalist in the fields of editorial cartooning, photojournalism, and sports writing.</p>
-    <p>I love presenting on stage.</p>
-    <p>I once managed and hosted a major school event in our campus.</p>
-
-    <!-- Interactive Buttons -->
-    <div class="button-group">
-      <button class="btn" onclick="showMessage('contact')">Get in Touch!</button>
-      <button class="btn btn-outline" onclick="showMessage('Talents')">View My skills</button>
-      <button class="btn btn-outline" onclick="cycleTheme()">Switch Color Theme</button>
+  <!-- Top Bar with Live Status & Theme Switcher -->
+  <div class="top-bar">
+    <div class="status-badge">
+      <span class="pulse-dot"></span>
+      <span>HELENA.OS // ONLINE</span>
     </div>
-
-    <!-- Color Dot Selectors 
-    -->
-    <div class="theme-selector">
-      <span class="theme-label">Theme:</span>
-      <div class="theme-dot dot-light" title="Light Theme" onclick="setTheme('light')"></div>
-      <div class="theme-dot dot-dark" title="Dark Blue Theme" onclick="setTheme('dark')"></div>
-      <div class="theme-dot dot-purple" title="Dark Purple Theme" onclick="setTheme('purple')"></div>
+    <div class="theme-pills" title="Switch Vibe">
+      <button class="theme-btn" style="background:#09090d;" onclick="setTheme('')" title="Obsidian Alt"></button>
+      <button class="theme-btn" style="background:#eef4ff;" onclick="setTheme('soft-sky')" title="Soft Sky"></button>
+      <button class="theme-btn" style="background:#2d1650;" onclick="setTheme('cyber-plum')" title="Cyber Plum"></button>
     </div>
-
-    
-    <!-- Message Box -->
-    <div id="message-box"></div>
   </div>
 
-  <footer>
-    <p>Jeo Ong once said: Dama, dama mo ba yung pinapadama ko sayo Gehlee..?</p>
-  </footer>
+  <div class="container">
 
-  <script>
-    // Color Palette Definitions
-    const themes = {
-      light: {
-        '--bg-color': '#eaf2ff',
-        '--card-bg': '#ffffff',
-        '--text-color': '#333333',
-        '--subtext-color': '#555555',
-        '--primary-color': '#174a8b',
-        '--secondary-color': '#2563eb',
-        '--accent-color': '#f3f7fe',
-        '--border-color': '#dbeafe'
-      },
-      dark: {
-        '--bg-color': '#111827',
-        '--card-bg': '#1f2937',
-        '--text-color': '#f3f4f6',
-        '--subtext-color': '#9ca3af',
-        '--primary-color': '#60a5fa',
-        '--secondary-color': '#3b82f6',
-        '--accent-color': '#374151',
-        '--border-color': '#4b5563'
-      },
-      purple: {
-        '--bg-color': '#13091f',
-        '--card-bg': '#22123b',
-        '--text-color': '#f3e8ff',
-        '--subtext-color': '#c084fc',
-        '--primary-color': '#d8b4fe',
-        '--secondary-color': '#a855f7',
-        '--accent-color': '#3b1d63',
-        '--border-color': '#581c87'
-      }
-    };
+    <!-- 1. ABOUT ME (HERO SECTION) -->
+    <section class="hero-card" id="about">
+      <div class="avatar-box">
+        <img src="IMG_20261112_001728.jpg" alt="Helena Profile" class="avatar" onclick="openLightbox(this.src, 'Helena — Grade 12 HUMSS')">
+      </div>
+      <div class="hero-info">
+        <span class="hero-tag"><i class="ph-fill ph-sparkle"></i> About Me // Grade 12 HUMSS</span>
+        <h1>Hi, I'm Helena! ✨</h1>
+        <p>
+          Senior High School student at <strong>Datamex College of Saint Adeline - Parañaque</strong>. 
+          Former Special Program in the Arts (SPA) Visual Arts major, campus journalist, stage performer, and creative storyteller.
+        </p>
+        <div class="quick-tags">
+          <span class="q-tag"><i class="ph-fill ph-palette"></i> Visual Artist</span>
+          <span class="q-tag"><i class="ph-fill ph-newspaper"></i> Campus Journalist</span>
+          <span class="q-tag"><i class="ph-fill ph-microphone-stage"></i> Event Host</span>
+          <span class="q-tag"><i class="ph-fill ph-music-notes"></i> Singer-Songwriter</span>
+        </div>
+      </div>
+    </section>
 
-    let currentThemeIndex = 0;
-    const themeKeys = ['light', 'dark', 'purple'];
+    <!-- INTERACTIVE ICON DOCK -->
+    <nav class="icon-nav">
+      <a href="#about" class="nav-tile"><i class="ph-duotone ph-user-circle"></i>About Me</a>
+      <a href="#achievements" class="nav-tile"><i class="ph-duotone ph-trophy"></i>Achievements</a>
+      <a href="#skills" class="nav-tile"><i class="ph-duotone ph-lightning"></i>Skills</a>
+      <a href="#talents" class="nav-tile"><i class="ph-duotone ph-paint-brush"></i>Talents</a>
+      <a href="#hobbies" class="nav-tile"><i class="ph-duotone ph-heart"></i>Hobbies</a>
+      <a href="#funfacts" class="nav-tile"><i class="ph-duotone ph-star"></i>Fun Facts</a>
+      <a href="#random" class="nav-tile"><i class="ph-duotone ph-shuffle"></i>Random</a>
+      <a href="#contact" class="nav-tile"><i class="ph-duotone ph-paper-plane-tilt"></i>Contact</a>
+    </nav>
 
-    function setTheme(themeName) { const selectedTheme = themes[themeName];
-      for (let variable in selectedTheme) { document.documentElement.style.setProperty(variable, selectedTheme[variable]);
-      }currentThemeIndex = themeKeys.indexOf(themeName) }
+    <!-- 2. MY ACHIEVEMENTS -->
+    <section class="section-block" id="achievements">
+      <div class="section-header">
+        <div class="section-title"><i class="ph-duotone ph-trophy"></i> My Achievements</div>
+        <span class="section-count">[01 — MILESTONES]</span>
+      </div>
+      <div class="photo-grid">
+        <div class="item-card">
+          <img src="photo-spa.jpg" alt="SPA Visual Arts" class="item-img" onclick="openLightbox(this.src, 'SPA Visual Arts Graduate')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-medal"></i> Arts Program</span>
+            <h3>SPA Visual Arts Major</h3>
+            <p>Completed intensive training in fine arts, composition, and visual storytelling under the Special Program in the Arts.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="photo-journalism.jpg" alt="Campus Journalism" class="item-img" onclick="openLightbox(this.src, 'Campus Press & Journalism')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-pen-nib"></i> Campus Press</span>
+            <h3>Multi-Field Campus Journalist</h3>
+            <p>Represented the school in editorial cartooning, photojournalism, and sports writing competitions.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="photo-event.jpg" alt="Event Management" class="item-img" onclick="openLightbox(this.src, 'Major Campus Event Host & Organizer')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-crown"></i> Leadership</span>
+            <h3>Major Campus Event Host</h3>
+            <p>Successfully organized, managed, and hosted a major campus-wide school event on stage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    function cycleTheme() {
-      currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
-      setTheme(themeKeys[currentThemeIndex]);
-    }
+    <!-- 3. SKILLS & 4. TALENTS -->
+    <section class="section-block" id="skills">
+      <div class="section-header">
+        <div class="section-title"><i class="ph-duotone ph-lightning"></i> Skills &amp; Talents</div>
+        <span class="section-count" id="talents">[02 — CREATIVE SUITE]</span>
+      </div>
+      <div class="photo-grid">
+        <div class="item-card">
+          <img src="photo-painting.jpg" alt="Oil and Water Painting" class="item-img" onclick="openLightbox(this.src, 'Oil & Watercolor Painting')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-palette"></i> Talent</span>
+            <h3>Oil &amp; Water Painting</h3>
+            <p>Expressive traditional painting blending rich textures in oil and soft washes in watercolor.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="photo-singing.jpg" alt="Singing and Songwriting" class="item-img" onclick="openLightbox(this.src, 'Singing & Songwriting')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-microphone"></i> Talent</span>
+            <h3>Singing &amp; Songwriting</h3>
+            <p>Vocal performance and writing original melodies and lyrics from personal experiences.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="photo-stage.jpg" alt="Public Speaking" class="item-img" onclick="openLightbox(this.src, 'Stage Presence & Public Speaking')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-megaphone"></i> Skill</span>
+            <h3>Stage Presenting &amp; Hosting</h3>
+            <p>Confident live speaking, crowd engagement, and program hosting for school events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    function showMessage(type) {
-      const box = document.getElementById('message-box');
-      box.style.display = 'block';
+    <!-- 5. HOBBIES -->
+    <section class="section-block" id="hobbies">
+      <div class="section-header">
+        <div class="section-title"><i class="ph-duotone ph-heart"></i> My Hobbies</div>
+        <span class="section-count">[03 — AFTER HOURS]</span>
+      </div>
+      <div class="photo-grid">
+        <div class="item-card">
+          <img src="photo-clay.jpg" alt="Clay Sculpting" class="item-img" onclick="openLightbox(this.src, 'Handmade Clay Sculpting')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-hand-heart"></i> 3D Craft</span>
+            <h3>Clay Sculpting</h3>
+            <p>Shaping custom miniature figures, charms, and detailed 3D art pieces by hand.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="photo-props.jpg" alt="Props Making" class="item-img" onclick="openLightbox(this.src, 'Custom Stage Props Making')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-scissors"></i> DIY Design</span>
+            <h3>Props Making</h3>
+            <p>Building creative stage props, backdrops, and wearable accessories from scratch.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="photo-writing.jpg" alt="Creative Writing" class="item-img" onclick="openLightbox(this.src, 'Poetry & Creative Writing')">
+          <div class="item-body">
+            <span class="item-badge"><i class="ph-fill ph-book-open-text"></i> Literature</span>
+            <h3>Poems, Songs &amp; Essays</h3>
+            <p>Journaling late at night and crafting poetry, reflective essays, and song lyrics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      if (type === 'contact') {box.innerHTML = '📧 Email: hellinuhgonzales@gmail.com <br> 📸 IG: @mhariah_hellinuh <br> 📘 FB: @Helena Gonzales <br> 🎵 TikTok: @eldevice ;}';
-    } else if (type === 'Talents' || type === 'Talents') { box.innerHTML = '⚡Talents: Singing, clay sculpting, props making, oil & water painting, songwriting, and creative writing (poems, songs, essays).';
-      }
-    }
-  </script>
-
-</body>
-</html>
+    <!-- 6. FUN FACTS & 7. RANDOM INTERACTIVE -->
+    <div class="bento-two">
+      <!-- Fun Facts -->
+      <section class="section-block" id="funfacts">
+        <div class="section-header">
+          <div class="section-title"><i class="ph-duotone ph-star"></i> Fun Facts</div>
+        </div>
+        <ul class="fact-list">
+          <li class="fact-item">
+            <
