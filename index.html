@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4efff">
+  <meta name="description" content="A personal portfolio and creative journal.">
+  <title>Helena's Little Archive — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f1ff;
+      --paper: rgba(255,255,255,.78);
+      --paper-solid: #fffaff;
+      --ink: #302641;
+      --muted: #81758f;
+      --accent: #9270c7;
+      --accent-2: #c1a9ec;
+      --line: rgba(113,82,155,.17);
+      --shadow: 0 18px 55px rgba(78,49,115,.11);
+      --nav: rgba(250,246,255,.82);
+      --chip: #eee5fb;
+    }
+
+    [data-theme="midnight"] {
+      --bg: #171323;
+      --paper: rgba(38,29,54,.88);
+      --paper-solid: #261d36;
+      --ink: #f6efff;
+      --muted: #b7a9c9;
+      --accent: #c1a0f1;
+      --accent-2: #8e70bd;
+      --line: rgba(221,198,255,.16);
+      --shadow: 0 18px 55px rgba(0,0,0,.25);
+      --nav: rgba(29,22,42,.88);
+      --chip: #382b4d;
+    }
+
+    [data-theme="rose"] {
+      --bg: #fff1f6;
+      --paper: rgba(255,255,255,.8);
+      --paper-solid: #fffafd;
+      --ink: #45283a;
+      --muted: #987889;
+      --accent: #b879a1;
+      --accent-2: #e1b4ce;
+      --line: rgba(165,95,135,.17);
+      --shadow: 0 18px 55px rgba(126,67,100,.1);
+      --nav: rgba(255,247,251,.86);
+      --chip: #f8e3ee;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(201,174,244,.25), transparent 28rem),
+        radial-gradient(circle at 95% 28%, rgba(238,194,220,.22), transparent 25rem),
+        var(--bg);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.65;
+      transition: background .3s, color .3s;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .85rem clamp(1rem,5vw,4rem);
+      background: var(--nav);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .25rem;
+    }
+
+    .nav-links a,
+    .theme-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: .48rem .7rem;
+      border-radius: 999px;
+      font-size: .83rem;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active,
+    .theme-btn:hover {
+      background: var(--chip);
+      color: var(--ink);
+    }
+
+    .theme-btn {
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 2rem));
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 5rem 0 4rem;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .76rem;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(3rem,7vw,5.7rem);
+      margin: .8rem 0 1rem;
+      letter-spacing: -.04em;
+    }
+
+    h1 em {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-top: 1.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .8rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .9rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .btn.soft {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .portrait-card {
+      position: relative;
+      width: min(100%,360px);
+      justify-self: center;
+      padding: 1rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 48% 48% 24px 24px;
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .portrait {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      border-radius: 48% 48% 18px 18px;
+      background: var(--chip);
+    }
+
+    .portrait-note {
+      text-align: center;
+      color: var(--muted);
+      font-family: "Playfair Display",serif;
+      font-style: italic;
+      padding: .8rem .2rem .2rem;
+    }
+
+    .sticker {
+      position: absolute;
+      right: -1.2rem;
+      top: 12%;
+      background: var(--paper-solid);
+      color: var(--accent);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: .7rem;
+      line-height: 1.2;
+      transform: rotate(12deg);
+      box-shadow: var(--shadow);
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.1rem,4vw,3.2rem);
+      margin: .4rem 0 0;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin: .5rem 0;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: .4rem 0 0;
+      font-size: .93rem;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--chip);
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .quote {
+      font-family: "Playfair Display",serif;
+      font-size: 1.55rem;
+      line-height: 1.4;
+      color: var(--accent);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: var(--chip);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: .42rem .75rem;
+      font-size: .8rem;
+    }
+
+    .timeline {
+      border-left: 1px solid var(--line);
+      margin-left: .5rem;
+      padding-left: 1.3rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 1.35rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.67rem;
+      top: .4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--chip);
+    }
+
+    .timeline-item strong {
+      display: block;
+    }
+
+    .timeline-item small {
+      color: var(--muted);
+    }
+
+    .work-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .work-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--chip);
+      cursor: zoom-in;
+    }
+
+    .work-info {
+      padding: 1.1rem 1.2rem 1.3rem;
+    }
+
+    .work-info h3 {
+      margin: 0;
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+    }
+
+    .journal-card {
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink);
+      width: 100%;
+      border: 1px solid var(--line);
+      transition: transform .2s;
+    }
+
+    .journal-card .date {
+      color: var(--accent);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .journal-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .contact-panel {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(2rem,4vw,3.2rem);
+      margin: .5rem 0;
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 1.4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    dialog {
+      width: min(560px, calc(100% - 2rem));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 0;
+      background: var(--paper-solid);
+      color: var(--ink);
+      box-shadow: 0 25px 90px rgba(20,10,40,.35);
+    }
+
+    dialog::backdrop {
+      background: rgba(23,15,35,.55);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-inner {
+      padding: 1.6rem;
+    }
+
+    .modal-inner h2 {
+      font-size: 2rem;
+      margin: .3rem 0 1rem;
+    }
+
+    .modal-inner p {
+      color: var(--muted);
+      white-space: pre-line;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .close {
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: var(--ink);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .lightbox img {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: block;
+      background: #160f20;
+    }
+
+    .lightbox .modal-inner {
+      padding: .7rem;
+    }
+
+    .lightbox .modal-top {
+      padding: .3rem .3rem .7rem;
+    }
+
+    .note {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 760px) {
+      .site-nav {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 3.5rem;
+        gap: 2.5rem;
+      }
+
+      .hero-copy {
+        margin: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .portrait-card {
+        width: min(75%,310px);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: .7rem;
+      }
+
+      .grid,
+      .journal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3.5rem 0;
+      }
+    }
+
+    @media (min-width: 761px) and (max-width: 980px) {
+      .grid,
+      .journal-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="#home">helena<span>.</span>archive</a>
+
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#works">Works</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <button class="theme-btn" id="themeToggle" type="button">
+      ☾ Theme
+    </button>
+  </nav>
+
+  <main>
+    <div class="wrap">
+
+      <!-- HOME -->
+      <section class="hero" id="home">
+        <div>
+          <div class="eyebrow">
+            a little corner of the internet · 2026
+          </div>
+
+          <h1>Hi, I'm<br><em>Helena.</em></h1>
+
+          <p class="hero-copy">
+            A Grade 12 HUMSS student, visual arts enthusiast,
+            storyteller, and curious creative. Welcome to my
+            little archive — a collection of the things I make,
+            the stories I tell, and the moments that shape me.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#works">
+              Explore my works ↗
+            </a>
+
+            <a class="btn soft" href="#about">
+              Get to know me
+            </a>
+          </div>
+        </div>
+
+        <div class="portrait-card">
+          <img
+            class="portrait"
+            src="images/IMG_20261112_001728.jpg"
+            alt="Portrait of Helena"
+            onerror="this.style.display='none';this.parentElement.style.minHeight='320px';this.parentElement.style.background='linear-gradient(145deg,var(--chip),var(--paper-solid))';"
+          >
+
+          <div class="portrait-note">
+            “still becoming, always creating.”
+          </div>
+
+          <div class="sticker">
+            made with<br>curiosity<br>✦
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">01 / the person behind the pages</div>
+            <h2>A little about me</h2>
+          </div>
+
+          <p>
+            Somewhere between art, words, leadership, and daydreams
+            — that's where you'll find me.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card">
+            <div class="quote">
+              “Creativity is how I make sense of the world.”
+            </div>
+
+            <p>
+              I'm a HUMSS student with a background in the
+              Special Program in the Arts (Visual Arts).
+              I enjoy expressing ideas through different forms
+              — from illustrations and photographs to writing,
+              performance, and handmade creations.
+            </p>
+
+            <p>
+              My experiences as a student journalist, class leader,
+              event host, and performer have taught me to be brave
+              with my ideas and thoughtful with my voice.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>My little timeline</h3>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <strong>Visual Arts learner</strong>
+                <small>
+                  Former SPA Visual Arts student at
+                  Negros Oriental High School
+                </small>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Campus journalism</strong>
+                <small>
+                  Explored editorial cartooning, photojournalism,
+                  and sports writing; represented my school in
+                  regional-level editorial cartooning
+                </small>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Leadership & stage</strong>
+                <small>
+                  Class president, event host and organizer,
+                  and stage performer
+                </small>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Still creating</strong>
+                <small>
+                  Writing stories, making art, learning,
+                  and collecting new experiences
+                </small>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">02 / things I enjoy doing</div>
+            <h2>My creative toolbox</h2>
+          </div>
+
+          <p>
+            A mix of skills I'm developing, interests I'm exploring,
+            and things that make me feel most like myself.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon">✎</div>
+            <h3>Writing & storytelling</h3>
+            <p>
+              Poems, songs, essays, creative ideas,
+              and stories that begin with a single thought.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Creative writing</span>
+              <span class="tag">Songwriting</span>
+              <span class="tag">Poetry</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon">✿</div>
+            <h3>Visual arts & crafts</h3>
+            <p>
+              Exploring visual expression through art,
+              clay sculpting, props making, and creative projects.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Visual arts</span>
+              <span class="tag">Clay</span>
+              <span class="tag">Props</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon">♫</div>
+            <h3>Performance & events</h3>
+            <p>
+              Sharing stories and energy through hosting,
+              organizing, singing, and stage performances.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Hosting</span>
+              <span class="tag">Singing</span>
+              <span class="tag">Leadership</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- WORKS -->
+      <section id="works">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">03 / snapshots of my world</div>
+            <h2>Works & memories</h2>
+          </div>
+
+          <p>
+            A growing gallery of school experiences, creative projects,
+            and moments worth keeping. Tap a photo to view it larger.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card work-card">
+            <img
+              class="work-image"
+              src="images/photo-spa.jpg"
+              alt="Visual arts and SPA memories"
+              data-lightbox
+            >
+            <div class="work-info">
+              <h3>Visual arts journey</h3>
+              <p>Memories from my time as a Visual Arts student.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img
+              class="work-image"
+              src="images/photo-journalism.jpg"
+              alt="Campus journalism memory"
+              data-lightbox
+            >
+            <div class="work-info">
+              <h3>Campus journalism</h3>
+              <p>Learning to observe, document, and tell stories.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img
+              class="work-image"
+              src="images/photo-event.jpg"
+              alt="Event hosting memory"
+            data-lightbox
+            >
+            <div class="work-info">
+              <h3>On the microphone</h3>
+              <p>Hosting, organizing, and helping bring events to life.</p>
+            </div>
+          </article>
+<article class="card work-card">
+            <img
+              class="work-image"
+              src="images/photo-painting.jpg"
+              alt="Painting artwork"
+              data-lightbox
+            >
+            <div class="work-info">
+              <h3>Art & experiments</h3>
+              <p>Color, ideas, and the joy of making something.</p>
+            </div>
+            </article>
+
+          <article class="card work-card">
+            <img
+              class="work-image"
+              src="images/photo-singing.jpg"
+              alt="Singing performance"
+              data-lightbox
+            >
+            <div class="work-info">
+              <h3>Music & expression</h3>
+              <p>Finding another way to communicate through music.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img
+              class="work-image"
+              src="images/photo-writing.jpg"
+              alt="Writing and journal pages"
+              data-lightbox
+            >
+            <div class="work-info">
+              <h3>Words on paper</h3>
+              <p>Little drafts, poems, songs, and ideas in progress.</p>
+            </div>
+          </article>
+        </div>
+        <p class="note">
+          Image tip: add your photos to an <strong>images</strong>
+          folder and use the filenames shown here, or change each
+          image path in this file.
+        </p>
+      </section>
+
+      <!-- JOURNAL -->
+      <section id="journal">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">04 / notes from the margins</div>
+            <h2>The journal nook</h2>
+          </div>
+
+          <p>
+            Small reminders, reflections, and thoughts from a person
+            who's still figuring things out — and enjoying the process.
+          </p>
+        </div>
+        <div class="journal-grid">
+
+          <button
+            class="card journal-card"
+            type="button"
+            data-title="On becoming"
+            data-date="A note to myself"
+            data-entry="I don't have to have everything figured out right now. I can learn as I go, change my mind, and become someone new with every season. Progress can be quiet, too."
+          >
+            <span class="date">01 · a reminder</span>
+            <h3>On becoming</h3>
+            <p>A reminder that growth doesn't need to be rushed.</p>
+            <span class="tag">Read entry ↗</span>
+          </button>
+          <button
+            class="card journal-card"
+            type="button"
+            data-title="The art of noticing"
+            data-date="A creative thought"
+            data-entry="Sometimes inspiration is hiding in ordinary things: the colors of the afternoon, a conversation, a song, or a sentence I almost forgot to write down. I want to keep noticing."
+          >
+            <span class="date">02 · creativity</span>
+            <h3>The art of noticing</h3>
+            <p>Finding little sparks of inspiration in everyday life.</p>
+            <span class="tag">Read entry ↗</span>
+          </button>
+
+          <button
+            class="card journal-card"
+            type="button"
+            data-title="Keep making things"
+            data-date="A creative promise"
+            data-entry="Not everything I create has to be perfect or impressive. Some things can simply exist because I wanted to make them. I hope I never lose that kind of curiosity."
+          >
+            <span class="date">03 · a promise</span>
+            <h3>Keep making things</h3>
+            <p>Creating for the joy of creating.</p>
+            <span class="tag">Read entry ↗</span>
+          </button>
+
+        </div>
+
+        <p class="note">
+          You can edit these journal entries directly in the HTML
+          by changing the text inside each button's data-entry attribute.
+        </p>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="contact-panel">
+          <div class="eyebrow">05 / let's connect</div>
+
+          <h2>Thanks for stopping by.</h2>
+          <p>
+            This little archive is always a work in progress,
+            just like me. If you'd like to connect, collaborate,
+            or simply say hello, you can add your preferred
+            contact link below.
+          </p>
+
+          <a class="btn primary" href="mailto:hello@example.com">
+            Say hello ✉
+          </a>
+          <p class="note">
+            Before publishing, replace hello@example.com with an
+            email address you are comfortable sharing publicly,
+            or remove this button.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <footer>
+    Made with care, curiosity, and a little bit of lavender.
+    · © <span id="year"></span> Helena's Little Archive
+  </footer>
+
+  <!-- JOURNAL POPUP -->
+  <dialog id="journalModal">
+    <div class="modal-inner">
+      <div class="modal-top">
+        <span class="eyebrow" id="journalDate">journal entry</span>
+        <button class="close" type="button" data-close aria-label="Close dialog">×</button>
+      </div>
+
+      <h2 id="journalTitle"></h2>
+      <p id="journalText"></p>
+    </div>
+  </dialog>
+    <!-- IMAGE LIGHTBOX -->
+  <dialog id="imageModal" class="lightbox">
+    <div class="modal-inner">
+      <div class="modal-top">
+        <span class="eyebrow">a closer look</span>
+        <button class="close" type="button" data-close aria-label="Close image">×</button>
+      </div>
+
+      <img id="lightboxImage" src="" alt="Expanded gallery image">
+    </div>
+  </dialog>
+  <script>
+    // THEME SWITCHER
+    const root = document.documentElement;
+    const themes = ["", "midnight", "rose"];
+    let themeIndex = 0;
+
+    const themeButton = document.getElementById("themeToggle");
+
+    themeButton.addEventListener("click", () => {
+      themeIndex = (themeIndex + 1) % themes.length;
+      if (themes[themeIndex]) {
+        root.setAttribute("data-theme", themes[themeIndex]);
+      } else {
+        root.removeAttribute("data-theme");
+      }
+
+      themeButton.textContent =
+        themes[themeIndex] === "midnight"
+          ? "☀ Theme"
+        : themes[themeIndex] === "rose"
+          ? "✿ Theme"
+          : "☾ Theme";
+    });
+
+    // AUTOMATIC FOOTER YEAR
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // JOURNAL POPUPS
+    const journalModal = document.getElementById("journalModal");
+
+    document.querySelectorAll(".journal-card").forEach(card => {
+      card.addEventListener("click", () => {
+        document.getElementById("journalTitle").textContent =
+          card.dataset.title;
+
+        document.getElementById("journalDate").textContent =
+          card.dataset.date;
+        document.getElementById("journalText").textContent =
+          card.dataset.entry;
+
+        journalModal.showModal();
+      });
+    });
+
+    // IMAGE LIGHTBOX
+    const imageModal = document.getElementById("imageModal");
+    const lightboxImage = document.getElementById("lightboxImage");
+
+    document.querySelectorAll("[data-lightbox]").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        imageModal.showModal();
+      });
+    });
+    // CLOSE POPUPS
+    document.querySelectorAll("[data-close]").forEach(button => {
+      button.addEventListener("click", () => {
+        button.closest("dialog").close();
+      });
+    });
+
+    [journalModal, imageModal].forEach(dialog => {
+      dialog.addEventListener("click", event => {
+        if (event.target === dialog) {
+          dialog.close();
+          }
+      });
+    });
+navLinks.forEach(link => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === "#" + entry.target.id
+            );
+          });
+        }
+      });
+    }, {
+      rootMargin: "-35% 0px -55% 0px"
+    });
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
+    // ACTIVE NAVIGATION
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("main section[id]");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          
