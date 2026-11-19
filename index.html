@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    *, *::before, *::after {
+    , ::before, ::after {
       box-sizing: border-box;
     }
 
@@ -965,9 +965,11 @@
           <div>
             <div class="eyebrow">05 / notes from the margins</div>
             <h2>The journal nook</h2>
+            
           </div>
           <p>Small reminders, reflections, and thoughts from a person who's still figuring things out — and enjoying the process.</p>
         </div>
+        
         <div class="journal-grid">
           <button class="card journal-card" type="button"
             data-title="On becoming"
@@ -978,6 +980,7 @@
             <p>A reminder that growth doesn't need to be rushed.</p>
             <span class="tag">Read entry ↗</span>
           </button>
+          
           <button class="card journal-card" type="button"
             data-title="The art of noticing"
             data-date="A creative thought"
@@ -987,6 +990,7 @@
             <p>Finding little sparks of inspiration in everyday life.</p>
             <span class="tag">Read entry ↗</span>
           </button>
+          
           <button class="card journal-card" type="button"
             data-title="Keep making things"
             data-date="A creative promise"
@@ -996,6 +1000,7 @@
             <p>Creating for the joy of creating.</p>
             <span class="tag">Read entry ↗</span>
           </button>
+          
         </div>
       </section>
 
@@ -1039,6 +1044,7 @@
 
   <!-- JAVASCRIPT -->
   <script>
+    
     // COLOR THEMES
     const root = document.documentElement;
     const themes = ["", "midnight", "rose"];
@@ -1112,10 +1118,13 @@
           }
         });
       }, {
+    
         rootMargin: "-35% 0px -55% 0px"
       });
+      
       sections.forEach(section => observer.observe(section));
+  
     }
   </script>
-</body>
-    </html>
+  </body>
+  </html>
