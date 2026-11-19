@@ -54,12 +54,13 @@
       --chip: #f8e3ee;
       --shadow: 0 18px 55px rgba(126,67,100,.1);}
 
-   {box-sizing: border-box;}
-
-    html {scroll-behavior: smooth;
+   [box-sizing: border-box;]
+    {
+      html {scroll-behavior: smooth;
       scroll-padding-top: 100px;}
 
-    body {margin: 0;
+    body {
+      margin: 0;
       color: var(--ink);
       background:
         radial-gradient(circle at 10% 5%, rgba(201,174,244,.25), transparent 28rem),
@@ -67,14 +68,20 @@
         var(--bg);
       font-family: "DM Sans", sans-serif;
       line-height: 1.65;
-      transition: background .3s, color .3s;}
+      transition: background .3s, color .3s;
+    }
 
-    a{color: inherit;
-      text-decoration: none;}
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
 
-    button {font: inherit;}
+    button {
+      font: inherit;
+    }
 
-    .site-nav {position: sticky;
+    .site-nav {
+      position: sticky;
       top: 0;
       z-index: 20;
       display: flex;
@@ -84,74 +91,105 @@
       padding: .85rem clamp(1rem,5vw,4rem);
       background: var(--nav);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(18px);}
+      backdrop-filter: blur(18px);
+    }
 
-    .brand {font-family: "Playfair Display", serif;
+    .brand {
+      font-family: "Playfair Display", serif;
       font-weight: 700;
       font-size: 1.2rem;
-      white-space: nowrap;}
+      white-space: nowrap;
+    }
 
-    .brand span {color: var(--accent);}
+    .brand span {
+      color: var(--accent);
+    }
 
-    .nav-links {display: flex;
+    .nav-links {
+      display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: .25rem;}
+      gap: .25rem;
+    }
 
     .nav-links a,
-    .theme-btn {border: 0;
+    .theme-btn {
+      border: 0;
       background: transparent;
       color: var(--muted);
       padding: .48rem .7rem;
       border-radius: 999px;
       font-size: .83rem;
       cursor: pointer;
-      transition: .2s!}
+      transition: .2s!
+    }
 
     .nav-links a:hover,
     .nav-links a.active,
-    .theme-btn:hover {background: var(--chip);
-      color: var(--ink);}
+    .theme-btn:hover
+      {
+      background: var(--chip);
+      color: var(--ink);
+      }
 
-    .theme-btn {border: 1px solid var(--line);
-      white-space: nowrap;}
+    .theme-btn {
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
 
-    .wrap {width: min(1080px, calc(100% - 2rem));
-      margin: auto;}
+    .wrap {
+      width: min(1080px, calc(100% - 2rem));
+      margin: auto;
+    }
 
-    .hero {min-height: 82vh;
+    .hero {
+      min-height: 82vh;
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 3rem;
       align-items: center;
-      padding: 5rem 0 4rem;}
+      padding: 5rem 0 4rem;
+    }
 
-    .eyebrow {color: var(--accent);
+    .eyebrow {
+      color: var(--accent);
       font-size: .76rem;
       letter-spacing: .19em;
       text-transform: uppercase;
-      font-weight: 700;}
+      font-weight: 700;
+    }
 
-    h1, h2, h3 {font-family: "Playfair Display", serif;
-      line-height: 1.15;}
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.15;
+    }
 
-    h1 {font-size: clamp(3rem,7vw,5.7rem);
+    h1 {
+      font-size: clamp(3rem,7vw,5.7rem);
       margin: .8rem 0 1rem;
-      letter-spacing: -.04em;}
+      letter-spacing: -.04em;
+    }
 
-    h1 em {color: var(--accent);
-      font-weight: 500;}
+    h1 em {
+      color: var(--accent);
+      font-weight: 500;
+    }
 
-    .hero-copy {max-width: 600px;
+    .hero-copy {
+      max-width: 600px;
       color: var(--muted);
-      font-size: 1.05rem;}
+      font-size: 1.05rem;
+    }
 
-    .hero-actions {display: flex;
+    .hero-actions {
+      display: flex;
       gap: .8rem;
       flex-wrap: wrap;
-      margin-top: 1.7rem;}
+      margin-top: 1.7rem;
+    }
 
-    .btn {display: inline-flex;
+    .btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: .8rem 1.15rem;
@@ -160,19 +198,27 @@
       cursor: pointer;
       font-weight: 700;
       font-size: .9rem;
-      transition: transform .2s, box-shadow .2s;}
+      transition: transform .2s, box-shadow .2s;
+    }
 
-    .btn:hover {transform: translateY(-3px);
-      box-shadow: var(--shadow);}
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
 
-    .btn.primary {background: var(--accent);
+    .btn.primary {
+      background: var(--accent);
       color: white;
-      border-color: var(--accent);}
+      border-color: var(--accent);
+    }
 
-    .btn.soft {background: var(--paper);
-      color: var(--ink);}
+    .btn.soft {
+      background: var(--paper);
+      color: var(--ink);
+    }
 
-    .portrait-card {position: relative;
+    .portrait-card {
+      position: relative;
       width: min(100%,360px);
       justify-self: center;
       padding: 1rem;
@@ -180,22 +226,28 @@
       border: 1px solid var(--line);
       border-radius: 48% 48% 24px 24px;
       box-shadow: var(--shadow);
-      transform: rotate(2deg);}
+      transform: rotate(2deg);
+    }
 
-    .portrait {width: 100%;
+    .portrait {
+      width: 100%;
       aspect-ratio: 4/5;
       object-fit: cover;
       display: block;
       border-radius: 48% 48% 18px 18px;
-      background: var(--chip);}
+      background: var(--chip);
+    }
 
-    .portrait-note {text-align: center;
+    .portrait-note {
+      text-align: center;
       color: var(--muted);
       font-family: "Playfair Display",serif;
       font-style: italic;
-      padding: .8rem .2rem .2rem;}
+      padding: .8rem .2rem .2rem;
+    }
 
-    .sticker {position: absolute;
+    .sticker {
+      position: absolute;
       right: -1.2rem;
       top: 12%;
       background: var(--solid);
@@ -210,77 +262,109 @@
       font-size: .7rem;
       line-height: 1.2;
       transform: rotate(12deg);
-      box-shadow: var(--shadow);}
+      box-shadow: var(--shadow);
+    }
 
-    section {padding: 4.5rem 0;}
+    section {
+      padding: 4.5rem 0;
+    }
 
-    .section-head {display: flex;
+    .section-head {
+      display: flex;
       justify-content: space-between;
       align-items: end;
       gap: 1rem;
-      margin-bottom: 2rem;}
+      margin-bottom: 2rem;
+    }
 
-    .section-head h2 {font-size: clamp(2.1rem,4vw,3.2rem);
-      margin: .4rem 0 0;}
+    .section-head h2 {
+      font-size: clamp(2.1rem,4vw,3.2rem);
+      margin: .4rem 0 0;
+    }
 
-    .section-head p {color: var(--muted);
+    .section-head p {
+      color: var(--muted);
       max-width: 420px;
-      margin: 0;}
+      margin: 0;
+    }
 
-    .grid {display: grid;
+    .grid {
+      display: grid;
       grid-template-columns: repeat(3,1fr);
-      gap: 1rem;}
+      gap: 1rem;
+    }
 
-    .card {background: var(--paper);
+    .card {
+      background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 1.35rem;
-      box-shadow: var(--shadow);}
+      box-shadow: var(--shadow);
+    }
 
-    .card h3 {font-size: 1.35rem;
-      margin: .5rem 0;}
+    .card h3 {
+      font-size: 1.35rem;
+      margin: .5rem 0;
+    }
 
-    .card p {color: var(--muted);
+    .card p {
+      color: var(--muted);
       margin: .4rem 0 0;
-      font-size: .93rem;}
+      font-size: .93rem;
+    }
 
-    .icon {width: 42px;
+    .icon {
+      width: 42px;
       height: 42px;
       display: grid;
       place-items: center;
       border-radius: 14px;
       background: var(--chip);
       color: var(--accent);
-      font-size: 1.25rem;}
+      font-size: 1.25rem;
+    }
 
-    .about-grid {display: grid;
+    .about-grid {
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;}
+      gap: 1rem;
+    }
 
-    .quote {font-family: "Playfair Display",serif;
+    .quote {
+      font-family: "Playfair Display",serif;
       font-size: 1.55rem;
       line-height: 1.4;
-      color: var(--accent);}
+      color: var(--accent);
+    }
 
-    .tags {display: flex;
+    .tags {
+      display: flex;
       flex-wrap: wrap;
       gap: .5rem;
-      margin-top: 1rem;}
+      margin-top: 1rem;
+    }
 
-    .tag {background: var(--chip);
+    .tag {
+      background: var(--chip);
       color: var(--muted);
       border-radius: 999px;
       padding: .42rem .75rem;
-      font-size: .8rem;}
+      font-size: .8rem;
+    }
 
-    .timeline {border-left: 1px solid var(--line);
+    .timeline {
+      border-left: 1px solid var(--line);
       margin-left: .5rem;
-      padding-left: 1.3rem;}
+      padding-left: 1.3rem;
+    }
 
-    .timeline-item {position: relative;
-      padding: 0 0 1.35rem;}
+    .timeline-item {
+      position: relative;
+      padding: 0 0 1.35rem;
+    }
 
-    .timeline-item::before {content: "";
+    .timeline-item::before {
+      content: "";
       position: absolute;
       left: -1.67rem;
       top: .4rem;
@@ -288,9 +372,12 @@
       height: 10px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 5px var(--chip);}
+      box-shadow: 0 0 0 5px var(--chip);
+    }
 
-    .timeline-item strong {display: block;}
+    .timeline-item strong {
+      display: block;
+    }
 
     .timeline-item small {
       color: var(--muted);
@@ -618,7 +705,9 @@
       <a href="#contact">Contact</a>
     </div>
 
-    <button class="theme-btn" id="themeToggle" type="button"
+    <button class="theme-btn"
+      id="themeToggle" 
+      type="button"
       ☾ Theme>
     </button>
     </nav>
@@ -648,8 +737,8 @@
 
         <div class="portrait-card">
           <img class="portrait"
-          <src="IMG_20261112_001728.jpg">
-            <alt="Portrait of Helena"
+          <src="IMG_20261112_001728.jpg"
+          alt="Portrait of Helena"
             <onerror="this.style.display='none'; this.parentElement.style.minHeight='320px'; this.parentElement.style.background='linear-gradient(145deg,var(--chip),var(--solid))';"
               
 
